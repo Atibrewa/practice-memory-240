@@ -1,0 +1,24 @@
+Sumvec.c:
+    1048576, 1 -> Miss rate for D1 cache -> 6.2%
+    stride 4 -> miss rate -> 15.4%
+    stride 8 -> miss rate -> 27.6%
+    there is a pattern of miss rate increasing with stride rate this is with about 
+    equal amount of references each time (~2.1 million)
+
+sumarraycols and sumarrayrows:
+    arraycols -> 1048576, stride 8 -> 53.1%
+                stride 4 -> 53.1%
+                stride 1 -> 53.1%
+    arrayrows -> 1048576, stride 8 -> 6.2%
+                stride 4 -> 6.2%
+                stride 1 -> 6.2%
+                stride 16 -> 6.2%
+    I was not expecting that. It makes sense that arraycols has a much higher miss rate
+    and rows has a much lower one. But the rates remain the same with different strides.
+
+Sumarray3d:
+    stride 1 or 4 or 8 -> 53.1%
+    no stride, faster code version -> 6.2%
+    This is as expected! With the worse version, it has a veryhigh miss rate
+    but with the optimal version, we access data that is closer (good spatial locality)
+    so the mis rate is far lower.

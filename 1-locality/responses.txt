@@ -1,0 +1,35 @@
+Sumvec:
+    1048576   1 -> 0.002672000 vs 0.002558000
+    20000000 16 -> 0.004638000 vs 0.011307000
+    2050000   4 -> 0.003790000 vs 0.003858000
+    1048576   4 -> 0.002363000 vs 0.002199000
+    1048576   8 -> 0.002519000 vs 0.003081000 # change in stride is making it take longer
+
+    stride of 1 has good spatial locality, but as stride gets larger, we are accessing elements further and further
+    away which may not be pulled up at the same time into a cache. This results in the accessing of elements taking much longer!
+
+Sumarraycols and Sumarrayrows:
+    cols will be slower because it has bad spatial locality - it will cause jumps because
+    the matrix is stored row by row.
+    rows will be faster because we are accessing it row by row which is how it is stored,
+    and we can access the elements close by quicker. (good spatial locality)
+    cols -> 1.073084000
+            0.720323000
+            0.712639000
+            0.730743000
+    rows -> 0.046620000
+            0.046468000
+            0.046577000
+            0.047153000
+    as predicted, rows is running faster since it accesses elements in a better way
+
+Sumarray3d:
+    time -> 0.031933000
+            0.032503000
+            0.032416000
+            0.031243000
+    changing around the order of loops made it far slower! swapped i, j and k order for looping through indices
+    slower -> 0.094408000  
+            0.072973000
+            0.094219000
+            0.071094000

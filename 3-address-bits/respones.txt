@@ -1,0 +1,43 @@
+Responses!
+
+L1 Cache: 18 x 32 KB 8-way
+    For one L1 per processor (of which there are 18)
+    M = 1024 GB = 2^40 bytes
+    m = 40
+    C = 32 KB = 2^15 bytes
+    E = 8 = 2^3
+    B = 64 = 2^6 bytes
+        S = 2^(15-9) = 2^6 = 64
+        t = 28
+        s = 6
+        b = 6
+
+L2 Cache: 18 x 256 KB 8-way
+    M = 1024 GB = 2^40 bytes
+    m = 40
+    C = 256 KB = 2^18 bytes
+    E = 8 = 2^3
+    B = 64 = 2^6 bytes
+        S = 2^(18-9) = 2^9 = 512
+        t = 25
+        s = 9
+        b = 6 
+
+Main memory in given Xeon:
+    L3 is 45 MB 20-way set associative shared cache
+    1536 GB is the physical memory
+
+Practice Problem 6.9:
+    1. S = 2^8
+        t = 22
+        s = 8
+        b = 2
+    2. S = 2^5
+        t = 24
+        s = 5
+        b = 3
+    3. S = 2^0 = 1
+        t = 27
+        s = 0
+        b = 5
+        
